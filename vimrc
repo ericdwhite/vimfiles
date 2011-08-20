@@ -38,7 +38,11 @@ set wildignore+=.git,.hg,.svn,.bzr,CVS
 let g:CommandTAcceptSelectionSplitMap='<C-w>'
 
 " Store .swp files in /var/tmp with mangled names
-set directory=/var/tmp//
+set directory=/var/tmp/
+
+" Tabs
+nmap ,a :tabprevious<CR>
+nmap ,s :tabnext<CR>
 
 " Windows
 nmap <C-N> <C-W>w
