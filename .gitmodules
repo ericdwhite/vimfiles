@@ -4,3 +4,6 @@
 [submodule "vim/bundle/The-NERD-tree"]
 	path = vim/bundle/The-NERD-tree
 	url = git://github.com/vim-scripts/The-NERD-tree.git
+[submodule "vim/bundle/vim-autoclose"]
+	path = vim/bundle/vim-autoclose
+	url = git://github.com/vim-scripts/AutoClose.git
