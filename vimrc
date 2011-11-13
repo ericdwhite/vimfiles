@@ -41,8 +41,8 @@ let g:CommandTAcceptSelectionSplitMap='<C-w>'
 set directory=/var/tmp/
 
 " Tabs
-nmap ,a :tabprevious<CR>
-nmap ,s :tabnext<CR>
+nmap ,w :tabprevious<CR>
+nmap ,e :tabnext<CR>
 
 " Windows
 nmap <C-N> <C-W>w
@@ -61,6 +61,10 @@ set hidden
 set equalalways
 set splitbelow splitright
 set mouse=a
+
+" Compilation
+command Rmake make! % | copen
+nmap <silent> ,m <Esc>:Rmake<CR><C-W><CR>
 
 " NERD-Tree
 nmap <Leader>f :NERDTreeToggle<CR>
