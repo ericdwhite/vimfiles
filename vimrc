@@ -1,48 +1,25 @@
-" General
-set nocompatible
+"
+" Using Janus for most of the defaults
+"   https://github.com/carlhuda/janus
 
-" Editing
-set aw ai
-set et ts=8 sts=2 sw=2 nu
-set fo+=tcrqw fo-=o
-set showmatch matchtime=5
-set whichwrap=<,>,h,l,[,]
-set cursorline
-set nofoldenable
-"let maplocalleader = ","
+
+" Leader
 let mapleader = ","
 
 " Style
-highlight CursorLine cterm=bold
-highlight MatchParen cterm=none ctermbg=none ctermfg=yellow
-
-" Filetypes
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
-filetype off " forces reload
-filetype plugin indent on
-syntax on
-
-" Searching
-set incsearch hlsearch
-set ignorecase smartcase
-set tags=tags,./tags
-nmap <silent> <C-c> <Esc>:!ctags -R<CR><CR>
-nmap <silent> ,h <Esc>:set invhls<CR>:set hls?<CR>
+"   http://vimcolorschemetest.googlecode.com/svn/html/index-c.html
+colorscheme molokai
 
 " Completions
-set wildmenu wildmode=full completeopt+=longest
-set wildignore+=node_modules,classes,target,Maildir,tmp
-set wildignore+=*.pyc,*.o,*.a,*.class,*.jar,*.zip,*.tgz,*.tar.gz,*.tbz2,*~
-set wildignore+=.git,.hg,.svn,.bzr,CVS
-let g:CommandTAcceptSelectionSplitMap='<C-w>'
-
-" Store .swp files in /var/tmp with mangled names
-set directory=/var/tmp/
+"set wildmenu wildmode=full completeopt+=longest
+"set wildignore+=node_modules,classes,target,Maildir,tmp
+"set wildignore+=*.pyc,*.o,*.a,*.class,*.jar,*.zip,*.tgz,*.tar.gz,*.tbz2,*~
+"set wildignore+=.git,.hg,.svn,.bzr,CVS
+"let g:CommandTAcceptSelectionSplitMap='<C-w>'
 
 " Tabs
-nmap ,w :tabprevious<CR>
-nmap ,e :tabnext<CR>
+nmap ,a :tabprevious<CR>
+nmap ,s :tabnext<CR>
 
 " Windows
 nmap <C-N> <C-W>w
@@ -57,17 +34,9 @@ nmap ,= <C-W>=
 nmap ,T <C-W>T
 nmap ,r <C-W>r
 nmap ,R <C-W>R
-set hidden
 set equalalways
 set splitbelow splitright
 set mouse=a
-
-" Compilation
-command Rmake make! % | copen
-nmap <silent> ,m <Esc>:Rmake<CR><C-W><CR>
-
-" NERD-Tree
-nmap <Leader>f :NERDTreeToggle<CR>
 
 " Sessions
 set viminfo=!,'100,<50,s10,h
@@ -76,14 +45,30 @@ let sessionman_save_on_exit = 1
 " Let %% expands to directory of %
 cabbr <expr> %% expand('%:h')
 
-" General programming
+" Compilation
+"command Rmake make! % | copen
+"nmap <silent> ,m <Esc>:Rmake<CR><C-W><CR>
+
+" Extension Mappings
 autocmd BufRead,BufNewFile *.ejs   set filetype=html
 autocmd BufRead,BufNewFile *.ru    set filetype=ruby
-autocmd BufNewFile,BufRead *.inc   set filetype=sh
 autocmd BufNewFile,BufRead *.md    set filetype=markdown
-autocmd FileType java,javascript   set ts=8 sts=4 sw=4 et nu
-autocmd FileType markdown,vimwiki  set fo+=a2 tw=78
 
-" Shell scripts
+" Plaintext Formatting
+autocmd FileType markdown  set fo+=a2 tw=78
+
+" Execute tests in a screen session.
+autocmd FileType javascript map <D-r> :w<CR>:!screen -x testr -X stuff $'./test.sh \n'<CR><CR>
+
+" Assume BASH Syntax
 let g:is_bash=1
-"let g:sh_fold_enabled=7
+
+"
+" Plugin Specific
+" ---------------
+"
+
+" NERD-Tree (toggle the tree o/c)
+nmap <Leader>f :NERDTreeToggle<CR>
+
+
